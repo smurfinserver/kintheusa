@@ -1,0 +1,17 @@
+{
+  "name": "kintheusa",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "build": "node scripts/build.cjs",
+    "check": "node scripts/check.cjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "pdf-lib": "1.17.1",
+    "pngjs": "7.0.0",
+    "jpeg-js": "0.4.4",
+    "hangul-js": "0.2.6"
+  }
+}

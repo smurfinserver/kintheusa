@@ -1,5 +1,18 @@
 # KIN THE USA — PWA 전환 가능 아키텍처
 
+## 2026-10-20 구현 상태
+
+- **PWA-ready / PWA 미출시**: 서버 API 없는 정적 HTML/CSS/JS, 상대 경로, 배포 파일 허용 목록을 정리했다.
+- 홈페이지 로직은 `assets/app.js`, 추가 도구는 `assets/tools-extra.js`로 분리했다. 두 서식은 기존 독립 HTML 및 PDF 생성 코드를 유지한다.
+- `pdf-lib` 1.17.1과 `hangul-js` 0.2.6은 로컬 정적 파일이다. CDN fallback이 없으며 `assets/licenses/` 및 `assets/vendor-hashes.json`에 출처·라이선스·해시가 있다.
+- CSP에서 `connect-src 'none'`, `form-action 'none'`으로 업로드/폼 제출을 차단한다. 홈페이지 스크립트는 동일 출처만 허용한다. 기존 서식만 inline script를 허용한다.
+- 사용자 입력값을 자동 저장하지 않는다. localStorage/IndexedDB/서비스 워커/Cache Storage를 사용하지 않는다.
+- Manifest, 앱 아이콘, 서비스 워커는 아직 추가하지 않았다. **설치·오프라인 재실행은 지원하지 않는다.** 온라인으로 라이브러리를 읽은 탭에서는 네트워크를 끊어도 PDF 병합이 동작하는 것을 별도로 검증한다.
+- 향후 구현 순서: 실제 아이콘/manifest → 정적 파일 allowlist 캐시 → 사용자 확인 후 업데이트 → 오프라인 재실행/캐시 교체 테스트 → Android/iOS 실기기 설치 검증.
+- GitHub Pages `/kintheusa/`와 도메인 루트에서 같은 정적 파일을 제공할 수 있다. `scripts/build.cjs`는 앱·로컬 라이브러리·빈 원본 서식만 `dist/`로 복사한다.
+
+아래 Manifest/SW 예시는 **향후 설계**이며 현재 제공 기능이 아니다.
+
 ## 1. 현재 단계와 목표
 
 현재 사이트는 정적 HTML/CSS/JS이다. 우선 정적 HTTPS 배포와 16개 도구의 정확한 작동을 확보하고, 추후 다음 PWA 기능을 단계적으로 제공한다.
@@ -93,7 +106,7 @@ Manifest/아이콘이 존재해야 실 설치 가능 여부를 검증할 수 있
 
 ## 5. `pdf-lib` 의존성 제거 계획
 
-현재 `assets/tools-extra.js`의 `ensurePdfLib()`는 `assets/pdf-lib.min.js` → cdnjs → jsDelivr 순으로 불러온다. 기존 ZIP에는 로컬 파일이 **포함돼 있지 않다**.
+초기 작업 문서에는 CDN fallback 방식이 기재되어 있었으나 저장소에는 해당 구현 자체가 누락되어 있었다. 현재 `assets/tools-extra.js`의 `pdfLib()`는 로컬 `assets/pdf-lib.min.js`만 읽는다. 아래 단계 중 1~4는 적용했고, 5는 서비스 워커 도입 시 수행한다.
 
 1. 검증된 `pdf-lib` 버전을 로컬 `assets/pdf-lib.min.js`로 추가한다.
 2. 정확한 버전, 해시(가능 시), MIT 라이선스/저작권 공지를 보관한다.

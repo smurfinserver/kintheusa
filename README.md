@@ -1,1 +1,12 @@
-첨부한 KIN THE USA ZIP 프로젝트를 먼저 분석한 뒤, `AGENTS.md`, `CODEX_TASK.md`, `docs/QA_MATRIX.md`, `docs/PWA_ARCHITECTURE.md` 지시사항에 따라 수행해 주세요. 목표는 (1) GitHub Pages 우선의 실제 HTTPS 호스팅과 자동 배포, (2) 16개 기능의 브라우저 자동/수동 검증 및 버그 수정, (3) PWA로 안전하게 확장 가능한 정적 구조 유지, (4) 검증 보고서입니다. 기존 카드형 UI와 한국어 문구, 브라우저 내부 개인정보 처리, 여권 신청서/법정대리인 동의서의 날짜·주민번호 입력 보정을 유지하세요. PDF 합치기의 외부 pdf-lib 의존을 로컬 번들로 개선하고 실제 병합/오프라인 동작을 검증해 주세요. 배포 계정 권한이나 저장소 URL이 필요하면 먼저 요청하고, 권한이 없는데 배포 완료했다고 보고하지 마세요. 실제 배포 URL, 기능별 PASS/FAIL/BLOCKED, 테스트 로그, 수정 내역, PWA 구현/미구현 항목을 결과로 제출해 주세요. 별도 승인 없이 DNS/도메인/유료 서비스를 변경하지 마세요.
+# KIN THE USA
+
+미국에 사는 한국인을 위한 16가지 무료 생활 도구입니다.
+여권 서식 작성, 사진 편집, PDF 병합, 단위·날짜 계산, 한영 타자 변환 등을 제공합니다.
+
+**[사이트 바로가기](https://smurfinserver.github.io/kintheusa/)**
+
+사진과 문서, 입력한 개인정보는 브라우저 안에서 처리합니다. 정부 공식 서비스가 아니므로 서류 제출 전 최신 공식 안내를 확인해 주세요.
+
+로컬 실행: `npm ci && npm run build` 후 `node scripts/serve.cjs` → http://127.0.0.1:4173/kintheusa/
+
+테스트: `npx playwright install chromium firefox` 후 `npm run check && npm test`.
