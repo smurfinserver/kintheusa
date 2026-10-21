@@ -5,7 +5,8 @@
 ## 배포 상태
 
 - 대상: https://smurfinserver.github.io/kintheusa/
-- GitHub 반영 전 로컬 검증 완료. 실제 HTTPS 배포 검증은 아직 NOT TESTED이며 배포 후 이 절을 갱신한다.
+- 로컬 60/60 PASS. **배포 BLOCKED / 실제 HTTPS 검증 NOT TESTED**: Pages 생성 API가 HTTP 422 및 `Your current plan does not support GitHub Pages for this repository.`를 반환했다. 최초 조회에서는 public이었으나 배포 직전 조회에서는 private으로 변경되어 있었다. 공개 전환 여부를 사용자에게 확인 중이며 요금제를 변경하지 않았다.
+- 비공개 저장소 Pages는 지원 요금제가 필요하다: [GitHub 공식 안내](https://docs.github.com/en/pages/quickstart).
 - `main` push 및 PR에서 구문·상대 경로·라이브러리 해시·Playwright 검증을 수행한다. `deploy`는 `needs: test`로 테스트 성공에 의존하며 실패 시 배포하지 않는다. PR은 배포하지 않는다.
 - 배포 후 공개 URL에서 Chromium 전체 기능 테스트를 별도로 실행한다. 사후 검증 실패 시 워크플로가 실패하지만 자동 롤백은 하지 않는다.
 - `dist/` 허용 목록: 홈페이지, 앱 자산, 두 서식 편집기, 빈 원본 PDF. 작업 문서·소스 테스트·테스트 결과·스크린샷·입력/출력 파일·node_modules·Git 메타데이터는 배포에서 제외한다.
