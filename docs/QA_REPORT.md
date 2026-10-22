@@ -113,3 +113,6 @@ BASE_URL=https://smurfinserver.github.io/kintheusa/ npx playwright test --projec
 - 로컬 검증 결과: `npm run check`, `npm run build` 통과. Chromium·Firefox·모바일 통합 **147/147 PASS (1.4분)** — 기존 16개 도구 60개 및 추가 서식 87개. 실제 배포 검증은 아래 후속 기록으로 관리한다.
 
 - CI 환경 수정: 2026-10-22 `ubuntu-latest`가 Ubuntu 26.04로 변경되면서 Playwright 1.56.1 브라우저 설치가 실패해 배포가 차단됐다. 실행 환경을 지원되는 `ubuntu-24.04`로 고정했다(테스트 생략 없음).
+- 실제 배포 검증: [Actions 실행 39867916664](https://github.com/smurfinserver/kintheusa/actions/runs/39867916664)에서 전체 147개 테스트 → Pages 배포 → 공개 URL Chromium 49개 테스트가 모두 성공했다. 추가로 공개 URL에서 신규 서식 Firefox·모바일 **58/58 PASS (37.6초)**를 확인했다.
+- 배포 주소: https://smurfinserver.github.io/kintheusa/tools/passport-forms.html . 원본 PDF 14개와 편집기·이미지 모두 `/kintheusa/` 하위 경로에서 제공된다. 테스트 산출물은 업로드하지 않았다.
+- 남은 제한: 위치를 직접 지정하는 편집기이며 실제 기관 접수 승인·실물 프린터·Safari/iOS 실기기는 미검증이다. 설치형 PWA와 오프라인 새로고침은 아직 구현하지 않았다. 새 정적 서식은 향후 안전한 오프라인 캐시 대상으로 문서화했다.
