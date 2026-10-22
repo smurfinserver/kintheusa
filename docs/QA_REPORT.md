@@ -1,12 +1,15 @@
 # KIN THE USA 검증 보고서
 
-검증일: 2026-10-20 (America/Los_Angeles). 실제 개인정보 없이 합성 이미지, 합성 PDF, 가상 입력만 사용했다. PASS는 아래 명시한 주요 기능의 통과이며 모든 브라우저·모든 입력에 대한 보증이 아니다.
+검증일: 2026-10-20~21 (America/Los_Angeles). 실제 개인정보 없이 합성 이미지, 합성 PDF, 가상 입력만 사용했다. PASS는 아래 명시한 주요 기능의 통과이며 모든 브라우저·모든 입력에 대한 보증이 아니다.
 
 ## 배포 상태
 
-- 대상: https://smurfinserver.github.io/kintheusa/
-- 로컬 60/60 PASS. 원격 [GitHub Actions 실행 39544904851](https://github.com/smurfinserver/kintheusa/actions/runs/39544904851)의 `test`도 **60/60 PASS (1.3분)**. 대상 커밋 `9fdcb1c`, CI 완료 2026-10-20 21:37 PDT (2026-10-21 04:37 UTC). `deploy`는 Pages 미활성화로 configure-pages 단계에서 404 실패, `verify-live`는 건너뜀. **배포 BLOCKED / 실제 HTTPS 검증 NOT TESTED**: Pages 생성 API가 HTTP 422 및 `Your current plan does not support GitHub Pages for this repository.`를 반환했다. 최초 조회에서는 public이었으나 배포 직전 조회에서는 private으로 변경되어 있었다. 공개 전환 여부를 사용자에게 확인 중이며 요금제를 변경하지 않았다.
-- 비공개 저장소 Pages는 지원 요금제가 필요하다: [GitHub 공식 안내](https://docs.github.com/en/pages/quickstart).
+- **정식 배포 완료 / HTTPS 검증 PASS**: https://smurfinserver.github.io/kintheusa/
+- 사용자 승인 후 2026-10-21에 저장소를 public으로 전환하고 Pages를 GitHub Actions 방식으로 활성화했다. HTTPS 강제 적용 상태이며 HTTP 200 응답을 확인했다. DNS·유료 요금제 변경 없음.
+- 배포 완료: **2026-10-21 20:14:25 PDT** (2026-10-22 03:14:25 UTC), 앱 커밋 `92808f5`.
+- [GitHub Actions 실행 39545197739](https://github.com/smurfinserver/kintheusa/actions/runs/39545197739): 사전 테스트 60개 통과, 배포 성공, 실제 HTTPS 대상 Chromium 사후 테스트 20개 통과. 이전 실패 단계 재실행으로 완료했다.
+- 추가로 실제 HTTPS 주소에 대해 Chromium / Firefox / 모바일 Chromium **60/60 PASS (1.0분)**. 16개 도구 주요 기능, 다운로드 파일 파싱, 경로, 오류 처리, 네트워크/저장 검사 모두 통과했다.
+- 초기 배포는 비공개 저장소의 요금제 제한(HTTP 422)으로 중단됐으나 공개 전환 승인 후 해결했다. [GitHub 공식 Pages 요금제 안내](https://docs.github.com/en/pages/quickstart).
 - `main` push 및 PR에서 구문·상대 경로·라이브러리 해시·Playwright 검증을 수행한다. `deploy`는 `needs: test`로 테스트 성공에 의존하며 실패 시 배포하지 않는다. PR은 배포하지 않는다.
 - 배포 후 공개 URL에서 Chromium 전체 기능 테스트를 별도로 실행한다. 사후 검증 실패 시 워크플로가 실패하지만 자동 롤백은 하지 않는다.
 - `dist/` 허용 목록: 홈페이지, 앱 자산, 두 서식 편집기, 빈 원본 PDF. 작업 문서·소스 테스트·테스트 결과·스크린샷·입력/출력 파일·node_modules·Git 메타데이터는 배포에서 제외한다.
