@@ -111,3 +111,5 @@ BASE_URL=https://smurfinserver.github.io/kintheusa/ npx playwright test --projec
 - 프라이버시: 원본/이미지/스크립트 모두 동일 출처 정적 파일이며 입력값 네트워크 전송 및 자동 저장이 없다. 공식 사이트는 사용자가 안내 링크를 직접 누를 때만 별도 탭으로 열린다.
 - 시각 확인: 데스크톱과 375px 모바일에서 목록·편집기를 확인했다. 가상 입력 스크린샷과 테스트 결과는 `.local-qa/`에만 저장하며 공개 저장소/Pages에 올리지 않는다.
 - 로컬 검증 결과: `npm run check`, `npm run build` 통과. Chromium·Firefox·모바일 통합 **147/147 PASS (1.4분)** — 기존 16개 도구 60개 및 추가 서식 87개. 실제 배포 검증은 아래 후속 기록으로 관리한다.
+
+- CI 환경 수정: 2026-10-22 `ubuntu-latest`가 Ubuntu 26.04로 변경되면서 Playwright 1.56.1 브라우저 설치가 실패해 배포가 차단됐다. 실행 환경을 지원되는 `ubuntu-24.04`로 고정했다(테스트 생략 없음).
