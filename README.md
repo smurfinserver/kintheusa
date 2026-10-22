@@ -2,6 +2,7 @@
 
 미국에 사는 한국인을 위한 16가지 무료 생활 도구입니다.
 여권 서식 작성, 사진 편집, PDF 병합, 단위·날짜 계산, 한영 타자 변환 등을 제공합니다.
+[공식 여권 서식 14종](https://smurfinserver.github.io/kintheusa/tools/passport-forms.html)의 원본 다운로드와 위치 선택 방식의 웹 작성도 지원합니다.
 
 **[사이트 바로가기](https://smurfinserver.github.io/kintheusa/)**
 

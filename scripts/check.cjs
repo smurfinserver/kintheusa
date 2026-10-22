@@ -7,6 +7,7 @@ const html = [
   "index.html",
   "tools/passport-form.html",
   "tools/guardian-form.html",
+  "tools/passport-forms.html",
 ];
 for (const file of html) {
   const text = fs.readFileSync(file, "utf8");
@@ -58,3 +59,25 @@ for (const file of ["assets/app.js", "assets/tools-extra.js"]) {
     "Unexpected network/storage API: " + file,
   );
 }
+
+for (const f of [
+  "assets/forms.js",
+  "assets/form-pdf.js",
+  "assets/form-catalog.js",
+])
+  new vm.Script(fs.readFileSync(f, "utf8"), { filename: f });
+const catalog = vm.runInNewContext(
+  fs.readFileSync("assets/form-catalog.js", "utf8") + "; FORM_CATALOG",
+);
+assert.equal(catalog.length, 14);
+for (const form of catalog) {
+  const pdf = fs.readFileSync("original-forms/official/" + form.id + ".pdf");
+  assert.equal(
+    crypto.createHash("sha256").update(pdf).digest("hex"),
+    form.sha256,
+  );
+  if (!form.example)
+    for (let i = 1; i <= form.pages; i++)
+      assert(fs.existsSync(`assets/form-pages/${form.id}-${i}.png`));
+}
+console.log("Official form catalog, 14 PDF hashes and page images: PASS");

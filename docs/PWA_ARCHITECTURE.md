@@ -132,3 +132,12 @@ Manifest/아이콘이 존재해야 실 설치 가능 여부를 검증할 수 있
 - PWA 새 버전 배포 뒤 서비스 워커 갱신 및 이전 캐시 정리 과정을 재현한다.
 - 아이콘·앱명·화면 방향/모바일 레이아웃을 확인한다.
 - 비공식 서비스 고지, 공식 신청 요건은 별도 확인해야 한다는 안내를 유지한다.
+
+
+## 2026-10-22 공식 서식 모음 추가
+
+- `tools/passport-forms.html`: 14종 목록, 검색, 13종 빈 서식의 위치 선택 편집기. 작성예시 1종은 다운로드 전용이다.
+- `assets/form-catalog.js`: 원본 파일명, 외교부 파일 키, 페이지 수, SHA-256. 원본은 `original-forms/official/`, 미리보기는 `assets/form-pages/`에서 제공한다.
+- `assets/forms.js` 및 `assets/form-pdf.js`: 사진/입력값을 전송하거나 영구 저장하지 않고 Canvas/Blob으로 PDF를 생성한다. CSP `connect-src 'none'`을 유지한다.
+- 기존 두 편집기의 입력 필드·날짜 보정·PDF JavaScript는 변경하지 않았다. 공식 최신 원본 모음 링크만 추가했다.
+- 향후 SW 허용 목록에 추가 HTML/JS/CSS/공식 PDF/PNG를 포함해야 한다. 현재 설치/오프라인 재실행 지원 상태는 달라지지 않는다.
