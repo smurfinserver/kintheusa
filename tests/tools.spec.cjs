@@ -162,6 +162,7 @@ test("01 passport photo: upload, zoom, pointer drag, KR/US JPG pixels", async ({
   await page.locator("#passportZoom").fill("180");
   await expect(page.locator("#zoomLabel")).toHaveText("180%");
   const canvas = page.locator("#cropCanvas");
+  await canvas.scrollIntoViewIfNeeded();
   const before = await canvas.evaluate((c) => c.toDataURL());
   const box = await canvas.boundingBox();
   if (isMobile) {
@@ -189,7 +190,7 @@ test("01 passport photo: upload, zoom, pointer drag, KR/US JPG pixels", async ({
     );
     await page.mouse.up();
   }
-  expect(await canvas.evaluate((c) => c.toDataURL())).not.toBe(before);
+  await expect.poll(() => canvas.evaluate((c) => c.toDataURL())).not.toBe(before);
   for (const [preset, w, h] of [
     ["kr", 413, 531],
     ["us", 600, 600],
