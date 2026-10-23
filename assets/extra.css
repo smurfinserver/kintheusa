@@ -81,3 +81,5 @@ button:focus-visible {
 }
 
 .forms-banner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px;margin-top:26px;background:#edf4ff;border:1px solid #dce9ff;border-radius:15px}.forms-banner strong{color:#245597}.forms-banner p{font-size:13px;color:#52657b;line-height:1.7;margin:6px 0 0}.forms-banner a{color:#245597;font-size:14px;font-weight:750;white-space:nowrap;text-decoration:underline}@media(max-width:720px){.forms-banner{align-items:flex-start;flex-direction:column}}
+
+#childRegistrationGuide[hidden] { display: none; }

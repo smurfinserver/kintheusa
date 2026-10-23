@@ -116,3 +116,9 @@ BASE_URL=https://smurfinserver.github.io/kintheusa/ npx playwright test --projec
 - 실제 배포 검증: [Actions 실행 39867916664](https://github.com/smurfinserver/kintheusa/actions/runs/39867916664)에서 전체 147개 테스트 → Pages 배포 → 공개 URL Chromium 49개 테스트가 모두 성공했다. 추가로 공개 URL에서 신규 서식 Firefox·모바일 **58/58 PASS (37.6초)**를 확인했다.
 - 배포 주소: https://smurfinserver.github.io/kintheusa/tools/passport-forms.html . 원본 PDF 14개와 편집기·이미지 모두 `/kintheusa/` 하위 경로에서 제공된다. 테스트 산출물은 업로드하지 않았다.
 - 남은 제한: 위치를 직접 지정하는 편집기이며 실제 기관 접수 승인·실물 프린터·Safari/iOS 실기기는 미검증이다. 설치형 PWA와 오프라인 새로고침은 아직 구현하지 않았다. 새 정적 서식은 향후 안전한 오프라인 캐시 대상으로 문서화했다.
+
+## 해외출생 아동 주민등록번호 안내 추가
+
+- 여권·영사/전체 목록에 안내 카드 추가: 입국 후 24시간, 세대주 주소지 주민센터, 세대주 신분증 및 아이 여권(혹은 출생증명서). 주민번호 검색에도 표시하고 다른 카테고리에서는 숨긴다. 기존 16개 도구는 유지한다.
+- 요청받은 방문 안내를 수록했으며 24시간 및 출생증명서 대체 조건은 공식 자료로 독립 확인하지 못해 관할 주민센터 사전 확인 문구를 함께 표시했다.
+- 정적 검사·빌드 통과. Playwright로 카테고리 전환·주민번호 검색·375px 가로 넘침 여부 확인 PASS. 기존 홈 회귀 테스트 Chromium/Firefox/모바일 결과는 배포 CI에서도 재검증한다.

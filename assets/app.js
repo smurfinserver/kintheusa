@@ -216,7 +216,11 @@ function renderCards() {
         `<a class="tool-card" href="${escapeHtml(TOOL_URLS[t.id] || "#tool/" + t.id)}" aria-label="${escapeHtml(t.name)}${t.ready || TOOL_URLS[t.id] ? " 열기" : " 준비 중"}"><div class="tool-card-top"><span class="tool-icon tone-${t.tone}">${svg(t.icon)}</span><span class="tiny-tag ${t.ready || TOOL_URLS[t.id] ? "" : "soon"}">${t.ready || TOOL_URLS[t.id] ? "바로 사용" : "준비 중"}</span></div><div class="tool-name">${escapeHtml(t.name)}</div><p class="tool-desc">${escapeHtml(t.desc)}</p><div class="card-bottom"><span>${escapeHtml(catName(t.cat))}</span><span class="card-arrow">${svg("arrow", 16)}</span></div></a>`,
     )
     .join("");
-  $("#empty").hidden = found.length > 0;
+  const guide = $("#childRegistrationGuide");
+  const showGuide = (activeCategory === "all" || activeCategory === "passport") &&
+    (!q || `${guide.textContent} 여권 영사 주민번호`.toLocaleLowerCase().includes(q));
+  guide.hidden = !showGuide;
+  $("#empty").hidden = found.length > 0 || showGuide;
 }
 function goHome() {
   location.hash = "";
