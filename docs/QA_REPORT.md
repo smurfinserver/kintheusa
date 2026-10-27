@@ -138,3 +138,4 @@ BASE_URL=https://smurfinserver.github.io/kintheusa/ npx playwright test --projec
 - Android APK assembleDebug 및 lintDebug PASS. 실기기 설치·화면 잠금·Doze 검증은 별도 필요하며 iPhone 앱은 아직 구현하지 않았다. 위치 공유의 공개 HTTPS 배포 및 홈 메뉴 연결은 도메인/프록시 확인 전까지 미완료다.
 
 - 최종 보완: 공유 생성 중 취소 처리, 앱 프로세스 재시작 시 대기 상태 초기화, 대략적 위치 권한 처리, 요청 본문 수신 중 폐기된 세션 재검사, 경로 계산 중 목적지 변경 시 재계산. 최종 Android 빌드/lint 및 9개 위치 서비스 테스트 PASS.
+- 2026-10-26 최종 GitHub 검증: 구현 커밋 `5d821f9`의 [위치 서비스/Android CI](https://github.com/smurfinserver/kintheusa/actions/runs/40454626298) 성공(위치 테스트 9개 + APK assemble/lint). [기존 Pages CI](https://github.com/smurfinserver/kintheusa/actions/runs/40454626384)도 전체 테스트·배포·실제 URL 재검증까지 성공했다. 로컬 relay `/health`는 200이며 Android APK 서명 검증도 통과했다. 외부 위치 공유 URL은 HTTPS 호스트 정보가 없어 아직 제공하지 않는다.
