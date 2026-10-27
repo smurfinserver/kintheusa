@@ -1,0 +1,45 @@
+services:
+  relay:
+    build: ./server
+    ports: ["127.0.0.1:8787:8787"]
+    env_file: .env
+    environment:
+      OSRM_URL: http://osrm:5000
+      TILE_URL: http://tiles/tile
+    logging:
+      driver: none
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 256m
+  osrm:
+    image: ghcr.io/project-osrm/osrm-backend:v5.27.1
+    command: osrm-routed --verbosity WARNING --algorithm mld /data/arizona-latest.osrm
+    volumes: ["./data/osrm:/data:ro"]
+    logging:
+      driver: none
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+  tiles:
+    image: overv/openstreetmap-tile-server:2.3.0
+    command: run
+    volumes:
+      [
+        "map-data:/data/database/",
+        "map-tiles:/data/tiles/",
+        "./deploy/tiles-apache.conf:/etc/apache2/sites-enabled/000-default.conf:ro",
+      ]
+    environment:
+      THREADS: "2"
+    shm_size: 256m
+    logging:
+      driver: none
+    restart: unless-stopped
+volumes:
+  map-data:
+    name: kin-location-map-data
+  map-tiles:
+    name: kin-location-map-tiles

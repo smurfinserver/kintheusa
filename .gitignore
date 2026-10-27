@@ -4,3 +4,13 @@ test-results/
 playwright-report/
 .local-qa/
 *.log
+
+# Private location relay state, maps and Android build artifacts
+location/.env
+location/data/
+location/android/.gradle/
+location/android/local.properties
+location/android/**/build/
+location/**/*.jks
+location/**/*.keystore
+location/android/.android/

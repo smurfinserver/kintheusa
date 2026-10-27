@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: #18344f;
+  background: #e8eef2;
+}
+#map {
+  height: 100dvh;
+  width: 100%;
+}
+main {
+  position: absolute;
+  z-index: 1000;
+  top: 20px;
+  left: 20px;
+  width: 350px;
+  max-height: 85dvh;
+  overflow: auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px #17334b25;
+  padding: 24px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #326caa;
+}
+h1 {
+  font-size: 24px;
+  margin: 22px 0 12px;
+}
+p {
+  line-height: 1.6;
+  font-size: 14px;
+}
+button {
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 12px;
+  background: #e8f1ff;
+  color: #205095;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 4px 3px 4px 0;
+  min-height: 44px;
+}
+.danger {
+  background: #fee9e9;
+  color: #a52b2b;
+}
+.muted {
+  color: #64748b;
+  font-size: 12px;
+}
+[hidden] {
+  display: none !important;
+}
+@media (max-width: 600px) {
+  main {
+    top: auto;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-height: 43dvh;
+    padding: 18px;
+  }
+  h1 {
+    font-size: 20px;
+    margin: 12px 0;
+  }
+  .leaflet-control-zoom {
+    margin-top: 15px !important;
+  }
+}

@@ -1,2 +1,4 @@
 *.pdf binary
 *.png binary
+
+location/server/public/vendor/* -text whitespace=cr-at-eol

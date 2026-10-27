@@ -1,0 +1,30 @@
+name: Test location relay and Android build
+on:
+  push:
+    branches: [main]
+    paths: ["location/**", ".github/workflows/location.yml"]
+  pull_request:
+    paths: ["location/**", ".github/workflows/location.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  relay:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: sha256sum -c location/server/public/vendor/SHA256SUMS
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox
+      - run: node --test location/tests/relay.test.mjs location/tests/browser.test.mjs
+  android:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t kin-location-android-build -f location/android/Dockerfile.build location/android
+      - run: docker run --rm -v "$PWD/location/android:/src" kin-location-android-build
+# No test location data, session tokens, signing keys, or test artifacts uploaded.

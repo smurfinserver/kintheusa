@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>KIN 위치 공유</title
+  ><link rel="stylesheet" href="vendor/leaflet.css" /><link
+    rel="stylesheet"
+    href="style.css"
+  />
+  <body>
+    <div id="map" aria-label="위치 공유 지도"></div>
+    <main>
+      <header><b>KIN THE USA</b><span>위치 공유</span></header>
+      <h1 id="title">공유된 위치</h1>
+      <p id="status" role="status">링크를 확인하고 있습니다.</p>
+      <p id="details"></p>
+      <p id="routeStatus"></p>
+      <button id="center">현재 위치로 이동</button
+      ><button id="fitRoute" hidden>경로 전체 보기</button>
+      <section id="manage" hidden>
+        <p>지도를 눌러 목적지를 지정하세요. 자동차 경로가 표시됩니다.</p>
+        <button id="clear">목적지 지우기</button
+        ><button id="revoke" class="danger">공유 종료 · 링크 폐기</button>
+      </section>
+      <p class="muted">
+        위치가 늦게 갱신되면 마지막 수신 위치를 표시합니다. 링크를 가진 사람은
+        누구나 볼 수 있으므로 신뢰하는 사람에게만 전달하세요.
+      </p>
+    </main>
+    <script src="vendor/leaflet.js"></script>
+    <script src="viewer.js"></script>
+  </body>
+</html>

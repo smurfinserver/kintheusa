@@ -1,0 +1,13 @@
+{
+  "name": "kin-location-relay",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test ../tests/relay.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
